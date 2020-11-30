@@ -1,25 +1,64 @@
-import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar } from '@ionic/react';
-import React from 'react';
-import ExploreContainer from '../components/ExploreContainer';
-import './Home.css';
+import React, { useEffect, useState } from "react";
+import axios from "axios";
+import {
+  IonContent,
+  IonHeader,
+  IonApp,
+  IonTitle,
+  IonToolbar,
+  IonCard,
+  IonCardContent,
+  IonCardHeader,
+  IonCardTitle,
+  IonCardSubtitle,
+  IonButton,
+} from "@ionic/react";
+import "./Home.css";
 
 const Home: React.FC = () => {
+  const API_KEY = "b4ed13d5c8e240cfa7cdb37e4944bccd";
+  const BASE_URL = `https://newsapi.org/v2/top-headlines?sources=techcrunch&apiKey=${API_KEY}`;
+  const [data, setData] = useState([]);
+
+  useEffect(() => {
+    let isMounted = true;
+    axios
+      .get(BASE_URL)
+      .then((res) => res.data)
+      .then((data) => {
+        if (isMounted) {
+          setData(data.articles);
+        }
+      });
+    return () => {
+      isMounted = false;
+    };
+  }, []);
+
+
   return (
-    <IonPage>
+    <IonApp>
       <IonHeader>
-        <IonToolbar>
-          <IonTitle>Blank</IonTitle>
+        <IonToolbar color="primary">
+          <IonTitle>Mak News</IonTitle>
         </IonToolbar>
       </IonHeader>
-      <IonContent fullscreen>
-        <IonHeader collapse="condense">
-          <IonToolbar>
-            <IonTitle size="large">Blank</IonTitle>
-          </IonToolbar>
-        </IonHeader>
-        <ExploreContainer />
+      <IonContent>
+        {data.map((item: any) => (
+          <IonCard>
+            <img src={item.urlToImage} />
+            <IonCardHeader>
+              <IonCardTitle>{item.title}</IonCardTitle>
+              <IonCardSubtitle>{item.author}</IonCardSubtitle>
+            </IonCardHeader>
+            <IonCardContent>
+              <p>{item.content}</p>
+              <IonButton href={item.url}> Read</IonButton>
+            </IonCardContent>
+          </IonCard>
+        ))}
       </IonContent>
-    </IonPage>
+    </IonApp>
   );
 };
 

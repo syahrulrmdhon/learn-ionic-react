@@ -24,7 +24,7 @@ const Register: React.FC = () => {
         <IonPage>
       <IonHeader>
         <IonToolbar>
-          <IonTitle>Login Mak News</IonTitle>
+          <IonTitle>Signup Mak News</IonTitle>
         </IonToolbar>
       </IonHeader>
       <IonContent fullscreen className="ion-padding ion-text-center">

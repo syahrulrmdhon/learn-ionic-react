@@ -3,7 +3,7 @@ import axios from "axios";
 import {
   IonContent,
   IonHeader,
-  IonApp,
+  IonPage,
   IonTitle,
   IonToolbar,
   IonCard,
@@ -16,12 +16,12 @@ import {
 import "./Home.css";
 
 const Home: React.FC = () => {
-  const API_KEY = "b4ed13d5c8e240cfa7cdb37e4944bccd";
-  const BASE_URL = `https://newsapi.org/v2/top-headlines?sources=techcrunch&apiKey=${API_KEY}`;
   const [data, setData] = useState([]);
 
   useEffect(() => {
     let isMounted = true;
+    const API_KEY = "b4ed13d5c8e240cfa7cdb37e4944bccd";
+    const BASE_URL = `https://newsapi.org/v2/top-headlines?sources=techcrunch&apiKey=${API_KEY}`;
     axios
       .get(BASE_URL)
       .then((res) => res.data)
@@ -37,15 +37,15 @@ const Home: React.FC = () => {
 
 
   return (
-    <IonApp>
+    <IonPage>
       <IonHeader>
         <IonToolbar color="primary">
           <IonTitle>Mak News</IonTitle>
         </IonToolbar>
       </IonHeader>
       <IonContent>
-        {data.map((item: any) => (
-          <IonCard>
+        {data.map((item: any, key: number) => (
+          <IonCard key={key}>
             <img src={item.urlToImage} />
             <IonCardHeader>
               <IonCardTitle>{item.title}</IonCardTitle>
@@ -58,7 +58,7 @@ const Home: React.FC = () => {
           </IonCard>
         ))}
       </IonContent>
-    </IonApp>
+    </IonPage>
   );
 };
 

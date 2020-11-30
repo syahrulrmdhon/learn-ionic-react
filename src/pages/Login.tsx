@@ -18,6 +18,7 @@ import Logo from '../image/makNewss.png';
 const Login: React.FC = () => {
   const history = useHistory();
   const handleLogin = () => {
+    console.log('test')
     return history.push("/home");
   };
   return (
@@ -69,7 +70,7 @@ const Login: React.FC = () => {
               <p style={{ fontSize: "small" }}>
                 By clicking LOGIN you agree to our <a href="#">Policy</a>
               </p>
-              <IonButton expand="block" onClick={handleLogin}>
+              <IonButton expand="block" onClick={() => { handleLogin() }}>
                 Login
               </IonButton>
               <p style={{ fontSize: "medium" }}>

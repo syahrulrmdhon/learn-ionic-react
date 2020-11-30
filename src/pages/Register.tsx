@@ -17,7 +17,7 @@ import Logo from '../image/makNewss.png';
 
 const Register: React.FC = () => {
     const history = useHistory();
-    const handleLogin = () => {
+    const handleBack = () => {
       return history.push('/login');
     }
     return (
@@ -89,11 +89,11 @@ const Register: React.FC = () => {
               <p style={{ fontSize: "small" }}>
                 By clicking SIGNUP you agree to our <a href="#">Policy</a>
               </p>
-              <IonButton expand="block" onClick={handleLogin}>
+              <IonButton expand="block" onClick={() => { handleBack() }}>
                 Signup
               </IonButton>
               <p style={{ fontSize: "medium" }}>
-                already have an account? <a href="#" onClick={() => history.push('/login')}>Login!</a>
+                already have an account? <a href="/login">Login!</a>
               </p>
             </IonCol>
           </IonRow>

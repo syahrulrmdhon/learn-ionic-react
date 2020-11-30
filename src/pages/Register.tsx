@@ -47,6 +47,16 @@ const Register: React.FC = () => {
               <img style={{ width: '100px' }} src={Logo} />
             </IonCol>
           </IonRow>
+
+          <IonRow>
+            <IonCol>
+              <IonItem>
+                <IonLabel position="floating">Name</IonLabel>
+                <IonInput type="text"></IonInput>
+              </IonItem>
+            </IonCol>
+          </IonRow>
+
           <IonRow>
             <IonCol>
               <IonItem>
@@ -64,16 +74,26 @@ const Register: React.FC = () => {
               </IonItem>
             </IonCol>
           </IonRow>
+
+          <IonRow>
+            <IonCol>
+              <IonItem>
+                <IonLabel position="floating">Confirm Password</IonLabel>
+                <IonInput type="password"></IonInput>
+              </IonItem>
+            </IonCol>
+          </IonRow>
+
           <IonRow>
             <IonCol>
               <p style={{ fontSize: "small" }}>
-                By clicking LOGIN you agree to our <a href="#">Policy</a>
+                By clicking SIGNUP you agree to our <a href="#">Policy</a>
               </p>
               <IonButton expand="block" onClick={handleLogin}>
-                Login
+                Signup
               </IonButton>
               <p style={{ fontSize: "medium" }}>
-                Don't have an account? <a href="#" onClick={() => history.push('/signup')}>Sign up!</a>
+                already have an account? <a href="#" onClick={() => history.push('/login')}>Login!</a>
               </p>
             </IonCol>
           </IonRow>
